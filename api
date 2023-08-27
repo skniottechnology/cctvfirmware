@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CCTV Log File Extraction</title>
+</head>
+<body>
+    <h1>CCTV Log File Extraction</h1>
+    
+    <button id="extractLogsButton">Extract Logs</button>
+    <div id="logContainer"></div>
+    
+    <script>
+        document.getElementById("extractLogsButton").addEventListener("click", function() {
+            // Make an API call to retrieve log files
+            // Replace this with the actual API call to your CCTV system
+            // You might need to use AJAX or fetch() to perform the API call
+            // Example using fetch():
+            fetch("/api/getlogs")
+                .then(response => response.json())
+                .then(data => {
+                    // Process the log data and display it on the page
+                    const logContainer = document.getElementById("logContainer");
+                    logContainer.innerHTML = "";
+                    data.forEach(log => {
+                        const logEntry = document.createElement("div");
+                        logEntry.textContent = log.timestamp + " - " + log.message;
+                        logContainer.appendChild(logEntry);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching log data:", error);
+                });
+        });
+    </script>
+</body>
+</html>
+
+<p>Visit <a href="https://www.skntechnology.in/cctv-camera-in-bhubaneswar">here</a></p>
+Please note that this is a simplified example and doesn't include actual API calls or error handling specific to a CCTV system. You'll need to adapt this code to the APIs and data formats provided by your CCTV system. Additionally, if security is a concern, make sure to implement proper authentication and authorization mechanisms when accessing log data.
